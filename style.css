@@ -1,4 +1,4 @@
-:root {
+:root, p {
     margin: 0;
     padding: 0;
     list-style: none;
@@ -13,7 +13,9 @@
 
 body {
     background-color: var(--color-bg-2);
-    color: var(--color-text-primary)
+    color: var(--color-text-primary);
+    padding: 0;
+    margin: 0;
 }
 
 #container {
@@ -24,7 +26,8 @@ body {
 
 nav {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr auto;
     background-color: var(--color-bg-1);
+    padding: 1rem;
 }
 
