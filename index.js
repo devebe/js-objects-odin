@@ -25,13 +25,17 @@ function createHTML(location, html, id, type) {
     document.getElementById(location).appendChild(child)
 }
 
+function addBookForm() {
+    createHTML('main', 'form', "AddBookForm", 'form')
+    createHTML('AddBookForm', 'input', "title", 'text') 
+    createHTML('AddBookForm', 'input', "author", 'text')
+    createHTML('AddBookForm', 'input', "amount of pages", 'text')
+    createHTML('AddBookForm', 'input', "isRead", 'checkbox')
+    createHTML('AddBookForm', 'button',"Submit", 'form')
+}
 
+document.getElementById('AddBook').addEventListener("click", addBookForm)
 
-createHTML('main', 'form', "AddBookForm", 'form')
-createHTML('AddBookForm', 'input', "title", 'text')
-createHTML('AddBookForm', 'input', "author", 'text')
-createHTML('AddBookForm', 'input', "amount of pages", 'text')
-createHTML('AddBookForm', 'input', "isRead", 'checkbox')
-createHTML('AddBookForm', 'button',"Add to Library", 'submit')
-
-
+document.getElementById("Submit").addEventListener("click", () => {
+    console.log("toegevoegd")
+})
