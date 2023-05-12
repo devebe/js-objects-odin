@@ -1,0 +1,30 @@
+:root {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+
+    --color-text-primary: #0d0d0d;
+    --color-text-secondary: #656565;
+    --color-bg-1: #f5f5f5;
+    --color-bg-2: #e5e5e5;
+}
+
+body {
+    background-color: var(--color-bg-2);
+    color: var(--color-text-primary)
+}
+
+#container {
+    display: grid;
+    grid-auto-rows: min-content;
+    gap: 2rem;
+}
+
+nav {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    background-color: var(--color-bg-1);
+}
+
