@@ -1,3 +1,5 @@
+let myLibrary = []
+
 function Book(title, author, pageCount, genre) {
     this.title = title
     this.author = author
@@ -5,37 +7,30 @@ function Book(title, author, pageCount, genre) {
     this.genre = genre
 }
 
-function createHTML(location, html, id, type) {
-    if (html === 'input') {
-        let label = document.createElement('label')
-        label.setAttribute('for', id)
-        label.textContent = id
-        document.getElementById(location).appendChild(label)
+function viewBook(book) {
+    let card = document.createElement('div')
+    card.setAttribute('id', 'Book')
+    card.setAttribute('class', 'card')
+    for (let i = 0; i < Object.keys(book).length; i++) {
+        let data = document.createElement('p')
+        data.setAttribute('id',`${Object.keys(book)[i]}`)
+        data.textContent = Object.values(book)[i]
+        card.appendChild(data)
     }
-    let child = document.createElement(html);
-    if (html === 'button') {
-        child.textContent = id
-    }
-    child.setAttribute('id', id);
-    child.setAttribute('type', type);
-    if (html === 'input') {
-        child.setAttribute('placeholder', `Enter ${id}`)
-        child.setAttribute('name', id)
-    }
-    document.getElementById(location).appendChild(child)
+    document.getElementById('main').appendChild(card)
 }
 
-function addBookForm() {
-    createHTML('main', 'form', "AddBookForm", 'form')
-    createHTML('AddBookForm', 'input', "title", 'text') 
-    createHTML('AddBookForm', 'input', "author", 'text')
-    createHTML('AddBookForm', 'input', "amount of pages", 'text')
-    createHTML('AddBookForm', 'input', "isRead", 'checkbox')
-    createHTML('AddBookForm', 'button',"Submit", 'form')
+function viewLibrary() {
+    myLibrary.forEach((book) => {
+        viewBook(book)
+    })
 }
 
-document.getElementById('AddBook').addEventListener("click", addBookForm)
-
-document.getElementById("Submit").addEventListener("click", () => {
-    console.log("toegevoegd")
-})
+let book1 = new Book("The Chronicles of Narnia", "C.S. Lewis", 200, "Fantasy")
+let book2 = new Book("Harry Potter and The Chamber of Secrets", "J.K. Rowling", 400, "Fantasy")
+let book3 = new Book("Thinking Fast and Slow", "Daniel Kahneman", 400, "Science")
+myLibrary.push(book1)
+myLibrary.push(book2)
+myLibrary.push(book3)
+/* displayBooks()
+styleBooks() */
