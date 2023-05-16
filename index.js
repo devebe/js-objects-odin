@@ -10,12 +10,13 @@ function Book(title, author, pageCount, genre, id) {
 
 function viewBook(book) {
     let card = document.createElement('div')
+    let keys = Object.keys(book)
     card.setAttribute('id', 'book')
     card.setAttribute('class', 'card')
 
-    for (let i = 0; i < (Object.keys(book).length - 1); i++) {
+    for (let i = 0; i < (keys.length - 1); i++) {
         let data = document.createElement('p')
-        data.setAttribute('id',`${Object.keys(book)[i]}`)
+        data.setAttribute('id',`${keys[i]}`)
         data.textContent = Object.values(book)[i]
         card.appendChild(data)
     }
