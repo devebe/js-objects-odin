@@ -1,10 +1,11 @@
 let myLibrary = []
 
-function Book(title, author, pageCount, genre) {
+function Book(title, author, pageCount, genre, rating) {
     this.title = title
     this.author = author
     this.pageCount = `${pageCount} pages`
     this.genre = genre
+    this.rating = rating
 }
 
 function viewBook(book) {
@@ -53,13 +54,40 @@ function updateId(book) {
             Object.assign(book, { id : lastId + 1 })
         }
     } 
-} 
-
+}
 
 let modal = document.getElementById('modal')
+
+let form = document.getElementById('modal-content')
+
 function viewModal() {
     modal.style.display = 'grid'
-    modal.style.gridTemplateRows = 'repeat(3, min-content)'
+    form.textContent = ''
+    viewForm()
+}
+
+function viewField(key) {
+    let field = document.createElement('div')
+    field.setAttribute('name', key)
+
+    let label = document.createElement('label')
+    label.setAttribute('name', key)
+    label.textContent = key
+
+    let input = document.createElement('input')
+    input.setAttribute('name', key)
+    input.setAttribute('placeholder', `Enter ${key}`)
+    input.setAttribute('type', 'text')
+
+    field.appendChild(label)
+    field.appendChild(input)
+
+    return form.appendChild(field)
+}
+
+function viewForm() {
+    let book = new Book()
+    Object.keys(book).forEach((key) => viewField(key))
 }
 
 function closeModal() {
@@ -71,8 +99,6 @@ showModal.addEventListener('click', viewModal)
 
 const hideModal = document.getElementById('close')
 hideModal.addEventListener('click', closeModal)
-
-
 
 function addBooktoLibrary(book) {
     myLibrary.push(book)
@@ -96,6 +122,6 @@ function listenAfterDOMLoad() {
             })
         }
     )
-    
+
     return buttons
 }
