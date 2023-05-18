@@ -68,7 +68,8 @@ function viewModal() {
 
 function viewField(key) {
     let field = document.createElement('div')
-    field.setAttribute('name', key)
+    field.setAttribute('class', key)
+    field.setAttribute('id', 'field')
 
     let label = document.createElement('label')
     label.setAttribute('name', key)
