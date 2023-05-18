@@ -65,6 +65,18 @@ function viewLibrary() {
         viewBook(book)
     })
     listenAfterDOMLoad()
+    viewNumberOfBooksInLibrary()
+}
+
+function viewNumberOfBooksInLibrary() {
+    const headerTitle = document.getElementById('page-title')
+
+    if (myLibrary.length == 0) {
+        headerTitle.textContent = 'Books'
+    }
+    else {
+        headerTitle.textContent = `Books (${myLibrary.length})`
+    }
 }
 
 function viewModal() {
@@ -141,3 +153,5 @@ hideModal.addEventListener('click', closeModal)
 
 let submit = document.getElementById('submit-book')
 submit.addEventListener('click', addBooktoLibrary)
+
+viewNumberOfBooksInLibrary()

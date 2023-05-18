@@ -20,9 +20,21 @@ body {
     margin: 0;
 }
 
-h2, h3 {
-    font-size: 20px;
+h1, h2, h3 {
     margin: 0;
+    line-height: 120%;
+}
+
+h1 {
+    font-size: 32px;
+}
+
+h2 {
+    font-size: 24px;
+}
+
+h3 {
+    font-size: 20px;
 }
 
 body {
@@ -47,11 +59,18 @@ nav {
     align-items: center;
 }
 
+#header {
+    display: grid;
+    grid-auto-rows: min-content;
+    gap: 8px;
+    padding: 8px 80px;
+}
+
 #main {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     grid-auto-rows: auto auto;
-    padding: 32px;
+    padding: 32px 80px;
     gap: 24px;
 }
 
@@ -164,4 +183,11 @@ button {
 
 .pageCount, .rating {
     width: 120px;
+}
+
+#footer {
+    color: #656565;
+    background-color: #b5b5b5;
+    text-align: center;
+    padding: 8px;
 }
