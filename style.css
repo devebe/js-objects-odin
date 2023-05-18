@@ -1,9 +1,9 @@
-:root, p {
+:root, p, button {
     margin: 0;
     padding: 0;
     list-style: none;
     font-family: "Roboto", sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 150%;
     box-sizing: border-box;
 
@@ -47,17 +47,23 @@ nav {
     border-radius: 8px;
     display: grid;
     grid-template-rows: repeat(4, min-content) auto;
-    gap: 8px;
+    gap: 4px;
     align-items: start;
 }
 
 #actions {
+    margin-top: 1rem;
     align-self: end;
 }
 
 #title {
     font-weight: 800;
-    font-size: 20px;
+    font-size: 16px;
+}
+
+#author {
+    font-weight: 600;
+    color: #656565;
 }
 
 form {
@@ -91,5 +97,7 @@ input#isRead {
 
 button {
     height: 32px;
+    padding-left: 8px;
+    padding-right: 8px;
     width: auto;
 }

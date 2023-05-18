@@ -1,17 +1,17 @@
 let myLibrary = []
 
-function Book(title, author, pageCount, genre, id) {
+function Book(title, author, pageCount, genre) {
     this.title = title
     this.author = author
     this.pageCount = `${pageCount} pages`
     this.genre = genre
-    this.id = id
 }
 
 function viewBook(book) {
     let card = document.createElement('div')
     let keys = Object.keys(book)
-    card.setAttribute('id', 'book')
+
+    card.setAttribute('id', `${book.id}`)
     card.setAttribute('class', 'card')
 
     for (let i = 0; i < (keys.length - 1); i++) {
@@ -35,26 +35,45 @@ function viewBook(book) {
     document.getElementById('main').appendChild(card)
 }
 
-function setId(poep) {
-    poep.length > 1 ? x : 1
-}
-
 function viewLibrary() {
     document.getElementById('main').textContent = ''
     myLibrary.forEach((book) => {
         viewBook(book)
     })
+    listenAfterDOMLoad()
 }
 
-function addBooktoLibrary() {
-    
+function updateId(book) {
+    if (book.id == undefined) {
+        Object.assign(book, {id : (myLibrary.length) })
+    }
 }
 
-let book1 = new Book("The Chronicles of Narnia", "C.S. Lewis", 200, "Fantasy",1)
-let book2 = new Book("Harry Potter and The Chamber of Secrets", "J.K. Rowling", 400, "Fantasy",2)
-let book3 = new Book("Thinking Fast and Slow", "Daniel Kahneman", 400, "Science",3)
-myLibrary.push(book1)
-myLibrary.push(book2)
-myLibrary.push(book3)
-/* displayBooks()
-styleBooks() */
+function addBooktoLibrary(book) {
+    myLibrary.push(book)
+    myLibrary.forEach((book) => {
+        updateId(book)
+    })
+}
+
+function removeBookfromLibrary(bookIndex) {
+    let target = myLibrary.indexOf((myLibrary.find(element => element.id == bookIndex)))
+    myLibrary.splice(target, 1)
+    viewLibrary()
+}
+
+function listenAfterDOMLoad() {
+    let buttons = document.querySelectorAll('button.remove')
+
+    buttons.forEach((button) => {
+        button.addEventListener('click', (e) => {
+            let bookIndex = e.target.id
+            console.log("I am targeting the following id")
+            console.log(bookIndex)
+            removeBookfromLibrary(bookIndex)
+            })
+        }
+    )
+
+    return buttons
+}
