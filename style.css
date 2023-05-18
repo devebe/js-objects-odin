@@ -63,14 +63,14 @@ nav {
     display: grid;
     grid-auto-rows: min-content;
     gap: 8px;
-    padding: 8px 80px;
+    padding: 8px clamp(16px, 100%, 80px);
 }
 
 #main {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     grid-auto-rows: auto auto;
-    padding: 32px 80px;
+    padding: 32px clamp(16px, 100%, 80px);
     gap: 24px;
 }
 
