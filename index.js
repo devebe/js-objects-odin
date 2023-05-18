@@ -45,9 +45,15 @@ function viewLibrary() {
 
 function updateId(book) {
     if (book.id == undefined) {
-        Object.assign(book, {id : (myLibrary.length) })
-    }
-}
+        if (myLibrary.length == 1) {
+            Object.assign(book, { id : 1 });
+        } else {
+            let lastId = myLibrary[myLibrary.length - 2];
+            let newId = lastId.id + 1;
+            Object.assign(book, { id : newId })
+        }
+    } 
+} 
 
 function addBooktoLibrary(book) {
     myLibrary.push(book)
