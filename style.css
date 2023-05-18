@@ -70,12 +70,12 @@ nav {
     align-self: end;
 }
 
-#title {
+p#title{
     font-weight: 800;
     font-size: 16px;
 }
 
-#author {
+p#author {
     font-weight: 600;
     color: #656565;
 }

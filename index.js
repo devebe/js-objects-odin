@@ -8,6 +8,8 @@ function Book(title, author, pageCount, genre, rating) {
     this.rating = rating
 }
 
+// View functions
+
 function viewBook(book) {
     let card = document.createElement('div')
     let keys = Object.keys(book)
@@ -36,12 +38,61 @@ function viewBook(book) {
     document.getElementById('main').appendChild(card)
 }
 
+function viewField(key) {
+    let field = document.createElement('div')
+    field.setAttribute('class', key)
+    field.setAttribute('id', 'field')
+
+    let label = document.createElement('label')
+    label.setAttribute('name', key)
+    label.textContent = key
+
+    let input = document.createElement('input')
+    input.setAttribute('name', key)
+    input.setAttribute('placeholder', `Enter ${key}`)
+    input.setAttribute('type', 'text')
+    input.setAttribute('id', key)
+
+    field.appendChild(label)
+    field.appendChild(input)
+
+    return form.appendChild(field)
+}
+
 function viewLibrary() {
     document.getElementById('main').textContent = ''
     myLibrary.forEach((book) => {
         viewBook(book)
     })
     listenAfterDOMLoad()
+}
+
+function viewModal() {
+    modal.style.display = 'grid'
+    form.textContent = ''
+    viewForm()
+}
+
+function viewForm() {
+    let book = new Book()
+    Object.keys(book).forEach((key) => viewField(key))
+}
+
+function closeModal() {
+    modal.style.display = 'none'
+}
+
+// Event controllers
+
+function listenAfterDOMLoad() {
+    let buttons = document.querySelectorAll('button.remove')
+
+    buttons.forEach((button) => {
+        button.addEventListener('click', (e) => {
+            removeBookfromLibrary(e.target.id)
+            })
+        }
+    )
 }
 
 function updateId(book) {
@@ -56,56 +107,20 @@ function updateId(book) {
     } 
 }
 
-let modal = document.getElementById('modal')
-
-let form = document.getElementById('modal-content')
-
-function viewModal() {
-    modal.style.display = 'grid'
-    form.textContent = ''
-    viewForm()
-}
-
-function viewField(key) {
-    let field = document.createElement('div')
-    field.setAttribute('class', key)
-    field.setAttribute('id', 'field')
-
-    let label = document.createElement('label')
-    label.setAttribute('name', key)
-    label.textContent = key
-
-    let input = document.createElement('input')
-    input.setAttribute('name', key)
-    input.setAttribute('placeholder', `Enter ${key}`)
-    input.setAttribute('type', 'text')
-
-    field.appendChild(label)
-    field.appendChild(input)
-
-    return form.appendChild(field)
-}
-
-function viewForm() {
+function addBooktoLibrary() {
     let book = new Book()
-    Object.keys(book).forEach((key) => viewField(key))
-}
-
-function closeModal() {
-    modal.style.display = 'none'
-}
-
-const showModal = document.getElementById('add-book')
-showModal.addEventListener('click', viewModal)
-
-const hideModal = document.getElementById('close')
-hideModal.addEventListener('click', closeModal)
-
-function addBooktoLibrary(book) {
+    book.title = document.querySelector('input#title').value
+    book.author = document.querySelector('input#author').value
+    book.pageCount = document.querySelector('input#pageCount').value
+    book.genre = document.querySelector('input#genre').value
+    book.rating = document.querySelector('input#rating').value
+    console.log(book)
     myLibrary.push(book)
     myLibrary.forEach((book) => {
         updateId(book)
     })
+    viewLibrary()
+    closeModal()
 }
 
 function removeBookfromLibrary(bookIndex) {
@@ -114,15 +129,15 @@ function removeBookfromLibrary(bookIndex) {
     viewLibrary()
 }
 
-function listenAfterDOMLoad() {
-    let buttons = document.querySelectorAll('button.remove')
+let modal = document.getElementById('modal')
 
-    buttons.forEach((button) => {
-        button.addEventListener('click', (e) => {
-            removeBookfromLibrary(e.target.id)
-            })
-        }
-    )
+let form = document.getElementById('modal-content')
 
-    return buttons
-}
+const showModal = document.getElementById('add-book')
+showModal.addEventListener('click', viewModal)
+
+const hideModal = document.getElementById('close')
+hideModal.addEventListener('click', closeModal)
+
+let submit = document.getElementById('submit-book')
+submit.addEventListener('click', addBooktoLibrary)
