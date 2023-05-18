@@ -55,6 +55,25 @@ function updateId(book) {
     } 
 } 
 
+
+let modal = document.getElementById('modal')
+function viewModal() {
+    modal.style.display = 'grid'
+    modal.style.gridTemplateRows = 'repeat(3, min-content)'
+}
+
+function closeModal() {
+    modal.style.display = 'none'
+}
+
+const showModal = document.getElementById('add-book')
+showModal.addEventListener('click', viewModal)
+
+const hideModal = document.getElementById('close')
+hideModal.addEventListener('click', closeModal)
+
+
+
 function addBooktoLibrary(book) {
     myLibrary.push(book)
     myLibrary.forEach((book) => {
@@ -73,13 +92,10 @@ function listenAfterDOMLoad() {
 
     buttons.forEach((button) => {
         button.addEventListener('click', (e) => {
-            let bookIndex = e.target.id
-            console.log("I am targeting the following id")
-            console.log(bookIndex)
-            removeBookfromLibrary(bookIndex)
+            removeBookfromLibrary(e.target.id)
             })
         }
     )
-
+    
     return buttons
 }
