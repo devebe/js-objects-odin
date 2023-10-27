@@ -1,12 +1,14 @@
 let myLibrary = []
 
-function Book(title, author, pageCount, genre, rating) {
-    this.title = title
-    this.author = author
-    this.pageCount = `${pageCount} pages`
-    this.genre = genre
-    this.rating = rating
-}
+class Book {
+    constructor(title, author, pageCount, genre, rating) {
+        this.title = title;
+        this.author = author;
+        this.pageCount = `${pageCount} pages`;
+        this.genre = genre;
+        this.rating = rating;
+    };
+};
 
 // View functions
 
